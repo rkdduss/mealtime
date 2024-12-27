@@ -12,7 +12,7 @@ export default function Card() {
         </View>
         <View style={{gap: 9, paddingTop: 20}}>
             <Text>발아현미</Text>
-            <Text>돼지국밥</Text>
+            <Text>순대국밥</Text>
             <Text>건새우멸치볶음</Text>
             <Text>치즈함박스테이크</Text>
             <Text>석박지</Text>
