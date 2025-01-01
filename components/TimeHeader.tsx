@@ -3,13 +3,21 @@ import React, { useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
 
 export default function TimeHeader() {
-  const [open, setOpen] = useState(false);
-  const [selectedClass, setSelectedClass] = useState("1-1");
-  const [items, setItems] = useState([
-    { label: "1학년 1반", value: "1-1" },
-    { label: "1학년 2반", value: "1-2" },
-    { label: "1학년 3반", value: "1-3" },
-    { label: "1학년 4반", value: "1-4" },
+  const [gradeOpen, setGradeOpen] = useState(false);
+  const [selectedGrade, setSelectedGrade] = useState("1");
+  const [grade, setGrade] = useState([
+    { label: "1학년", value: "1" },
+    { label: "2학년", value: "2" },
+    { label: "3학년", value: "3" },
+  ]);
+
+  const [classOpen, setClassOpen] = useState(false);
+  const [selectedClass, setSelectedClass] = useState("1");
+  const [classes, setClasses] = useState([
+    { label: "1반", value: "1" },
+    { label: "2반", value: "2" },
+    { label: "3반", value: "3" },
+    { label: "4반", value: "4" },
   ]);
 
   const data = [
@@ -25,16 +33,29 @@ export default function TimeHeader() {
     <View style={styles.container}>
       <Text style={styles.headerText}>이번주 시간표</Text>
       <DropDownPicker
-        open={open}
+        open={gradeOpen}
+        value={selectedGrade}
+        items={grade}
+        setOpen={setGradeOpen}
+        setValue={setSelectedGrade}
+        setItems={setGrade}
+        style={styles.dropdown}
+        dropDownContainerStyle={styles.dropdownContainer}
+        placeholder="학년을 선택해주세요"
+      />
+
+      <DropDownPicker
+        open={classOpen}
         value={selectedClass}
-        items={items}
-        setOpen={setOpen}
+        items={classes}
+        setOpen={setClassOpen}
         setValue={setSelectedClass}
-        setItems={setItems}
+        setItems={setClasses}
         style={styles.dropdown}
         dropDownContainerStyle={styles.dropdownContainer}
         placeholder="반을 선택해주세요"
       />
+
       <View style={styles.timetable}>
         {data.map((row, rowIndex) => (
           <View style={styles.row} key={rowIndex}>
@@ -106,6 +127,6 @@ const styles = StyleSheet.create({
     color: "#555",
   },
   dayText: {
-    color: 'black'
-  }
+    color: "black",
+  },
 });
